@@ -7,14 +7,24 @@
 [ci]:      https://travis-ci.org/sylvainpolletvillard/postcss-merge-grid-template
 
 ```css
-.foo {
-    /* Input example */
+#page {
+    display: grid;
+    width: 100%;
+    height: 250px;
+    grid-template-areas: "head head"
+                         "nav  main"
+                         "nav  foot";
+    grid-template-rows: 50px 1fr 30px;
+    grid-template-columns: 150px 1fr;
 }
 ```
 
 ```css
-.foo {
-  /* Output example */
+#page {
+    display: grid;
+    width: 100%;
+    height: 250px;
+    grid-template: "a a" 50px "b c" 1fr "b d" 30px / 150px 1fr;
 }
 ```
 
