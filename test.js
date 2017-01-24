@@ -1,6 +1,6 @@
 const test    = require('ava');
 const postcss = require('postcss');
-const plugin  = require('./src/index');
+const plugin  = require('./dist/index');
 
 function run(input, opts) {
     return postcss([ plugin(opts) ]).process(input)
