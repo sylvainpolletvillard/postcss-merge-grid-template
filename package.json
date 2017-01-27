@@ -1,6 +1,6 @@
 {
   "name": "postcss-merge-grid-template",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "PostCSS plugin to reduce grid templates declarations",
   "main": "dist/index.js",
   "keywords": [
@@ -36,7 +36,7 @@
   },
   "scripts": {
     "build": "babel src --out-dir dist",
-    "test": "ava",
+    "test": "ava --tap | tap-diff",
     "lint": "eslint src ./test.js --fix"
   }
 }
