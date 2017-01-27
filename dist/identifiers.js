@@ -56,34 +56,11 @@ function renameIdentifiers(identifiers, map) {
 	return map;
 }
 
-function replaceIdentifiers(input, identifiers, map) {
+function replaceIdentifiers(input, map) {
 	var output = input.replace(/\.{2,}/g, '.'); // reduce holes to a single dot identifier
-	var _iteratorNormalCompletion2 = true;
-	var _didIteratorError2 = false;
-	var _iteratorError2 = undefined;
-
-	try {
-		for (var _iterator2 = identifiers[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-			var id = _step2.value;
-
-			var idRegex = new RegExp('\\b' + id + '\\b', 'g');
-			output = output.replace(idRegex, map.get(id));
-		}
-	} catch (err) {
-		_didIteratorError2 = true;
-		_iteratorError2 = err;
-	} finally {
-		try {
-			if (!_iteratorNormalCompletion2 && _iterator2.return) {
-				_iterator2.return();
-			}
-		} finally {
-			if (_didIteratorError2) {
-				throw _iteratorError2;
-			}
-		}
-	}
-
+	output = output.split(/\b/).map(function (word) {
+		return map.get(word) || word;
+	}).join(''); // rename identifiers
 	output = output.match(/"[^"]*"/g).join(' '); // join rows with a single whitespace
 	output = output.replace(/\s{2,}/g, ' '); // merge whitespaces
 	return output;

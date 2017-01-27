@@ -20,7 +20,7 @@ module.exports = function optimizeRule(rule, nameMapping) {
 		if (identifiers) {
 			renameIdentifiers(identifiers, nameMapping);
 		}
-		areaDecl.value = replaceIdentifiers(areaDecl.value, identifiers, nameMapping);
+		areaDecl.value = replaceIdentifiers(areaDecl.value, nameMapping);
 
 		if (columnDecl && rowDecl) {
 			// [ <line-names>? <string> <track-size>? <line-names>? ]+ [ / <track-list> ]?
