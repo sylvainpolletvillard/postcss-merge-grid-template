@@ -30,16 +30,13 @@
 	"babel-cli": "^6.18.0",
 	"babel-core": "^6.21.0",
 	"babel-preset-env": "^1.1.8",
-    "eslint": "^3.12.2",
+    "eslint": "^3.14.1",
     "eslint-config-postcss": "^2.0.2",
     "tap-diff": "^0.1.1"
   },
   "scripts": {
     "build": "babel src --out-dir dist",
     "test": "ava --tap | tap-diff",
-    "lint": "eslint src"
-  },
-  "eslintConfig": {
-    "extends": "eslint-config-postcss"
+    "lint": "eslint src --fix"
   }
 }
