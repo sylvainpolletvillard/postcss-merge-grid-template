@@ -36,7 +36,7 @@
   },
   "scripts": {
     "build": "babel src --out-dir dist",
-    "test": "ava --tap | tap-diff",
-    "lint": "eslint src --fix"
+    "test": "ava",
+    "lint": "eslint src ./test.js --fix"
   }
 }

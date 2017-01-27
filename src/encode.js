@@ -1,6 +1,6 @@
 module.exports = function encode(slotNumber) {
-	let base = 52;
 	let characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	let base = characters.length;
 	let character = slotNumber % base;
 	let result = characters[character];
 	let remainder = Math.floor(slotNumber / base);

@@ -1,56 +1,18 @@
-var _require = require("./merge"),
-    mergeDecls = _require.mergeDecls;
+var optimizeRule = require('./optimize');
 
-var _require2 = require("./identifiers"),
-    getIdentifiers = _require2.getIdentifiers,
-    renameIdentifiers = _require2.renameIdentifiers,
-    replaceIdentifiers = _require2.replaceIdentifiers;
+module.exports = function () {
+	return function (css) {
+		var nameMapping = new Map();
 
-var DEFAULTS_OPTIONS = {};
-
-module.exports = function (options) {
-	options = Object.assign({}, DEFAULTS_OPTIONS, options);
-
-	var nameMapping = new Map();
-
-	return function (css, result) {
 		css.walkDecls(/grid-template-/, function (decl) {
 			var rule = decl.parent;
-			var areaDecl = rule.nodes.find(function (decl) {
-				return decl.prop === "grid-template-areas";
-			});
-			var columnDecl = rule.nodes.find(function (decl) {
-				return decl.prop === "grid-template-columns";
-			});
-			var rowDecl = rule.nodes.find(function (decl) {
-				return decl.prop === "grid-template-rows";
-			});
+			optimizeRule(rule, nameMapping);
+		});
 
-			// <'grid-template-rows'> / <'grid-template-columns'>
-			if (columnDecl && rowDecl && !areaDecl) {
-				rule.append({
-					prop: "grid-template",
-					value: `${rowDecl.value} / ${columnDecl.value}`
-				});
-				rule.removeChild(rowDecl);
-				rule.removeChild(columnDecl);
-			} else if (areaDecl) {
-				var identifiers = getIdentifiers(areaDecl.value);
-				if (identifiers) {
-					renameIdentifiers(identifiers, nameMapping);
-				}
-				areaDecl.value = replaceIdentifiers(areaDecl.value, identifiers, nameMapping);
-
-				if (columnDecl && rowDecl) {
-					//[ <line-names>? <string> <track-size>? <line-names>? ]+ [ / <track-list> ]?
-					rule.append({
-						prop: "grid-template",
-						value: mergeDecls({ rowDecl, columnDecl, areaDecl })
-					});
-					rule.removeChild(areaDecl);
-					rule.removeChild(rowDecl);
-					rule.removeChild(columnDecl);
-				}
+		css.walkDecls('grid-area', function (decl) {
+			// TODO: handle all formats possible for grid-area
+			if (nameMapping.has(decl.value)) {
+				decl.value = nameMapping.get(decl.value);
 			}
 		});
 	};

@@ -1,9 +1,9 @@
-var encode = require("./encode");
+var encode = require('./encode');
 
 var holeRegex = /^\.+$/g;
 
 function getIdentifiers() {
-	var input = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+	var input = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
 	var match = input.match(/"[^"]*"/g);
 	if (!match) return null;
@@ -57,7 +57,7 @@ function renameIdentifiers(identifiers, map) {
 }
 
 function replaceIdentifiers(input, identifiers, map) {
-	var output = input.replace(/\.{2,}/g, "."); // reduce holes to a single dot identifier
+	var output = input.replace(/\.{2,}/g, '.'); // reduce holes to a single dot identifier
 	var _iteratorNormalCompletion2 = true;
 	var _didIteratorError2 = false;
 	var _iteratorError2 = undefined;
@@ -66,7 +66,7 @@ function replaceIdentifiers(input, identifiers, map) {
 		for (var _iterator2 = identifiers[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
 			var id = _step2.value;
 
-			var idRegex = new RegExp("\\b" + id + "\\b", "g");
+			var idRegex = new RegExp('\\b' + id + '\\b', 'g');
 			output = output.replace(idRegex, map.get(id));
 		}
 	} catch (err) {
@@ -84,8 +84,8 @@ function replaceIdentifiers(input, identifiers, map) {
 		}
 	}
 
-	output = output.match(/"[^"]*"/g).join(" "); // join rows with a single whitespace
-	output = output.replace(/\s{2,}/g, " "); // merge whitespaces
+	output = output.match(/"[^"]*"/g).join(' '); // join rows with a single whitespace
+	output = output.replace(/\s{2,}/g, ' '); // merge whitespaces
 	return output;
 }
 

@@ -1,11 +1,22 @@
-const { mergeDecls } = require('./merge');
-const { getIdentifiers, renameIdentifiers, replaceIdentifiers } = require('./identifiers');
+var _require = require('./merge'),
+    mergeDecls = _require.mergeDecls;
+
+var _require2 = require('./identifiers'),
+    getIdentifiers = _require2.getIdentifiers,
+    renameIdentifiers = _require2.renameIdentifiers,
+    replaceIdentifiers = _require2.replaceIdentifiers;
 
 module.exports = function optimizeRule(rule, nameMapping) {
 
-	const areaDecl = rule.nodes.find(decl => decl.prop === 'grid-template-areas');
-	const columnDecl = rule.nodes.find(decl => decl.prop === 'grid-template-columns');
-	const rowDecl    = rule.nodes.find(decl => decl.prop === 'grid-template-rows');
+	var areaDecl = rule.nodes.find(function (decl) {
+		return decl.prop === 'grid-template-areas';
+	});
+	var columnDecl = rule.nodes.find(function (decl) {
+		return decl.prop === 'grid-template-columns';
+	});
+	var rowDecl = rule.nodes.find(function (decl) {
+		return decl.prop === 'grid-template-rows';
+	});
 
 	// <'grid-template-rows'> / <'grid-template-columns'>
 	if (columnDecl && rowDecl && !areaDecl) {
@@ -16,7 +27,7 @@ module.exports = function optimizeRule(rule, nameMapping) {
 		rule.removeChild(rowDecl);
 		rule.removeChild(columnDecl);
 	} else if (areaDecl) {
-		const identifiers = getIdentifiers(areaDecl.value);
+		var identifiers = getIdentifiers(areaDecl.value);
 		if (identifiers) {
 			renameIdentifiers(identifiers, nameMapping);
 		}
