@@ -12,7 +12,7 @@
     "cssnano",
     "optimization"
   ],
-  "author": "Sylvain Pollet-Villard <sylvain.pollet.villard@gmail.com>",
+  "author": "Sylvain Pollet-Villard",
   "license": "MIT",
   "repository": "sylvainpolletvillard/postcss-merge-grid-template",
   "bugs": {
