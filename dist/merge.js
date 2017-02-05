@@ -3,7 +3,7 @@ function mergeDecls(_ref) {
 	    columnDecl = _ref.columnDecl,
 	    areaDecl = _ref.areaDecl;
 
-	var rowValues = rowDecl.value.split(/\s+/);
+	var rowValues = rowDecl.value.split(/\s+(?![^(]*\))/);
 	var areasRows = areaDecl.value.match(/"[^"]*"/g);
 	var rows = areasRows.map(function (areasRow, i) {
 		return `${areasRow} ${rowValues[i] || ''}`;
