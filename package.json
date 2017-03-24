@@ -1,6 +1,6 @@
 {
   "name": "postcss-merge-grid-template",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "PostCSS plugin to reduce grid templates declarations",
   "main": "dist/index.js",
   "keywords": [
@@ -27,9 +27,9 @@
   },
   "devDependencies": {
     "ava": "^0.17.0",
-	"babel-cli": "^6.18.0",
-	"babel-core": "^6.21.0",
-	"babel-preset-env": "^1.1.8",
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.21.0",
+    "babel-preset-env": "^1.1.8",
     "eslint": "^3.14.1",
     "eslint-config-postcss": "^2.0.2",
     "tap-diff": "^0.1.1"
