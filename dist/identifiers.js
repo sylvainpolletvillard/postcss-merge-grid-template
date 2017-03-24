@@ -61,7 +61,10 @@ function replaceIdentifiers(input, map) {
 	output = output.split(/\b/).map(function (word) {
 		return map.get(word) || word;
 	}).join(''); // rename identifiers
-	output = output.match(/"[^"]*"/g).join(' '); // join rows with a single whitespace
+	var rows = output.match(/"[^"]*"/g);
+	if (rows) {
+		output = output.match(/"[^"]*"/g).join(' '); // join rows with a single whitespace
+	}
 	output = output.replace(/\s{2,}/g, ' '); // merge whitespaces
 	return output;
 }
