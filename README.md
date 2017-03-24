@@ -28,6 +28,12 @@
 }
 ```
 
+## Status: EXPERIMENTAL ☢️
+
+☠ ☠ ☠ ☠ ☠ ☠ ☠
+
+This plugin is still under development and does not currently cover all the possible places where zone identifiers can hide. That means it is likely to break your code by renaming half of the identifiers. Use it only if you know what you are doing.
+
 ## Usage
 
 ```js
