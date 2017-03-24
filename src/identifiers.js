@@ -29,7 +29,10 @@ function renameIdentifiers(identifiers, map) {
 function replaceIdentifiers(input, map) {
 	let output = input.replace(/\.{2,}/g, '.'); // reduce holes to a single dot identifier
 	output = output.split(/\b/).map(word => map.get(word) || word).join(''); // rename identifiers
-	output = output.match(/"[^"]*"/g).join(' '); // join rows with a single whitespace
+	let rows = output.match(/"[^"]*"/g);
+	if (rows) {
+		output = output.match(/"[^"]*"/g).join(' '); // join rows with a single whitespace
+	}
 	output = output.replace(/\s{2,}/g, ' '); // merge whitespaces
 	return output;
 }
