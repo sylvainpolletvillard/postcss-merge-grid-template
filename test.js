@@ -3,11 +3,11 @@ const postcss = require('postcss');
 const plugin  = require('./dist/index');
 
 function run(input, opts) {
-	return postcss([ plugin(opts) ]).process(input);
+	return postcss([ plugin(opts) ]).process(input, { from: undefined });
 }
 
 test('merge grid-template-rows and grid-template-columns', t => run(
-`#page {
+	`#page {
 	display: grid;
 	width: 100%;
 	height: 250px;
@@ -33,10 +33,10 @@ main {
 #footer {
 	grid-area: foot;
 }`)
-.then(({ css: output, warnings }) => {
-	t.is(warnings.length, 0);
-	t.is(output,
-`#page {
+	.then(({ css: output, warnings }) => {
+		t.is(warnings.length, 0);
+		t.is(output,
+			`#page {
 	display: grid;
 	width: 100%;
 	height: 250px;
@@ -58,10 +58,10 @@ main {
 #footer {
 	grid-area: d;
 }`);
-}));
+	}));
 
 test('rename grid areas identifiers', t => run(
-`body {
+	`body {
   grid-template-areas: "advert .... nav"
                        "advert .... nav";
 }
@@ -69,30 +69,30 @@ test('rename grid areas identifiers', t => run(
 .advert { grid-area: advert }
 nav { grid-area: nav }
 `)
-.then(({ css: output, warnings }) => {
-	t.is(warnings.length, 0);
-	t.is(output,
-`body {
+	.then(({ css: output, warnings }) => {
+		t.is(warnings.length, 0);
+		t.is(output,
+			`body {
   grid-template-areas: "a . b" "a . b";
 }
 
 .advert { grid-area: a }
 nav { grid-area: b }
 `
-	);
+		);
 
-}));
+	}));
 
 
 test('<\'grid-template-rows\'> / <\'grid-template-columns\'>', t => run(
-`.grid-template-a {
+	`.grid-template-a {
   grid-template-rows: 50px calc(10px + 20px);
   grid-template-columns: 1fr 20%;
 }`)
 	.then(({ css: output, warnings }) => {
 		t.is(warnings.length, 0);
 		t.is(output,
-`.grid-template-a {
+			`.grid-template-a {
   grid-template: 50px calc(10px + 20px) / 1fr 20%;
 }`
 		);

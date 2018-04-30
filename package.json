@@ -20,23 +20,18 @@
   },
   "homepage": "https://github.com/sylvainpolletvillard/postcss-merge-grid-template",
   "engines": {
-    "node": ">=4.3.0"
+    "node": ">=6.0.0"
   },
   "dependencies": {
-    "postcss": "^6.0.0"
+    "postcss": "^6.0.22"
   },
   "devDependencies": {
-    "ava": "^0.19.1",
-    "babel-cli": "^6.24.1",
-    "babel-core": "^6.24.1",
-    "babel-preset-env": "^1.4.0",
-    "eslint": "^3.19.0",
-    "eslint-config-postcss": "^2.0.2",
-    "tap-diff": "^0.1.1"
+    "ava": "^1.0.0-beta.4",
+    "eslint": "^4.19.1",
+    "eslint-config-postcss": "^2.0.2"
   },
   "scripts": {
-    "build": "babel src --out-dir dist",
-    "test": "ava --tap | tap-diff",
+    "test": "ava test.js",
     "lint": "eslint src ./test.js --fix"
   }
 }
