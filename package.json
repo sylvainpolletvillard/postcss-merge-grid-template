@@ -1,6 +1,6 @@
 {
   "name": "postcss-merge-grid-template",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "PostCSS plugin to reduce grid templates declarations",
   "module": "lib/main.js",
   "keywords": [
