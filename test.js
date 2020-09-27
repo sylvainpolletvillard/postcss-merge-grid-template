@@ -1,9 +1,9 @@
-const test    = require('ava');
+const test = require('ava');
 const postcss = require('postcss');
-const plugin  = require('./dist/index');
+const plugin = require('./lib/main');
 
 function run(input, opts) {
-	return postcss([ plugin(opts) ]).process(input, { from: undefined });
+	return postcss([plugin(opts)]).process(input, { from: undefined });
 }
 
 test('merge grid-template-rows and grid-template-columns', t => run(

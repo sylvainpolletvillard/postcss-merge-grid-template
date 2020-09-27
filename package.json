@@ -1,8 +1,8 @@
 {
   "name": "postcss-merge-grid-template",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "PostCSS plugin to reduce grid templates declarations",
-  "main": "dist/index.js",
+  "main": "lib/main.js",
   "keywords": [
     "postcss",
     "css",
@@ -22,16 +22,18 @@
   "engines": {
     "node": ">=6.0.0"
   },
-  "dependencies": {
-    "postcss": "^7.0.2"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "ava": "^1.0.0-beta.4",
-    "eslint": "^4.19.1",
-    "eslint-config-postcss": "^2.0.2"
+    "ava": "^3.13.0",
+    "eslint": "^7.10.0",
+    "eslint-config-postcss": "^4.0.0",
+    "postcss": "^8.1.0"
+  },
+  "peerDependencies": {
+    "postcss": "^8.1.0"
   },
   "scripts": {
     "test": "ava test.js",
-    "lint": "eslint src ./test.js --fix"
+    "lint": "eslint lib ./test.js --fix"
   }
 }
