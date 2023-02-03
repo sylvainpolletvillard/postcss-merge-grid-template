@@ -24,7 +24,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "ava": "^3.13.0",
+    "ava": "^5.1.1",
     "eslint": "^7.10.0",
     "eslint-config-postcss": "^4.0.0",
     "postcss": "^8.1.0"
